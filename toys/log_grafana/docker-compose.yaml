@@ -1,0 +1,63 @@
+version: "3.9"
+services:
+
+  api_py:
+    build:
+      context: ./api_py
+      dockerfile: Dockerfile-Py
+    ports:
+      - "8000:8000"
+    command: [ "python", "/app/api.py" ]
+
+  api_trino:
+    build: ./trino_postgres/http_listener
+    ports: 
+      - 8002:8002
+
+  trino:
+    image: trinodb/trino:385
+    restart: always
+    ports:
+      - 8080:8080
+      - 9080:9080
+      - 9081:9081
+    volumes:
+      - ./trino_postgres/trino_config:/etc/trino
+
+  db:
+    image: postgres:13.4-bullseye
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - ./../../_assets/init_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      # Trino goes to port 8080, so we move this to 8081.
+      - 8081:8080
+
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./configs/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./configs/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+    depends_on:
+      - prometheus
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - ./configs:/etc/
+    command:
+      - '--config.file=/etc/prometheus/jobs.yml'
+    depends_on:
+      - api_py

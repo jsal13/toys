@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+{{/* A ConfigMap contains basic configuration data for the app. */}}
+
+metadata:
+    name: {{ .Release.Name }}-configmap
+    {{/* The . at the end gives the scope of the template. */}}
+    {{- template "samplechart.labels" . }}
+data:
+    myvalue: "Hello World!"
+    
+    {{- with .Values.favorite }}
+    {{/* Now these are in the `.Values.favorite` scope. */}}
+    drink: {{ .drink | quote }}
+    food: {{ .food | upper | quote }}
+    air: {{ .air | default "clean" | quote}}
+    {{- if eq .drink "tea" }}
+    cooldude: "true"
+    {{- end }}
+    parentScopeObj: {{ $.Release.Name }}
+    {{- end }}
+    otherParentScopeObj: {{ .Release.Name }}
+    coolthings: |-
+        {{- range $index, $thing := .Values.coolthings }}
+            {{ $index }}: {{ $thing | title | quote }}
+        {{- end }}
+
+    {{- $relname := .Release.Name }}
+    releaseWithVar: {{ $relname | upper | quote }}
+    
+    {{/* We can do key-value stuff as well! */}}
+    {{- range $key, $val := .Values.favorite }}
+    {{ $key }}-iter: {{ $val | quote}}
+    {{- end }}
+
+    {{/* `template` is not a function, it's an action.  
+      because of this we need to use `insert`. */}}
+
+{{- include "samplechart.app" . | indent 4}}

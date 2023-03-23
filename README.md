@@ -1,0 +1,59 @@
+# Toys
+
+A collection of toys (templates for how to do things) for Data stuff.
+
+Most of these will be contained to a single folder and do one specific task.  The README in each will tell you the task.
+
+## Prefixes
+
+Nested structures got to be awkward when reusing toys, so I've opted to have a prefix structure to the folders to say what these toys are or do.  The list of prefixes is given below:
+
+| Prefix | Definition  |
+| ------ | ----------- |
+| aws    | AWS Service |
+| cron   | Scheduling  |
+| db     | Database    |
+| k8s    | Kubernetes  |
+| sec    | Security    |
+| tf     | Terraform   |
+
+## Why are some toys being copied with a justfile?
+
+There's a lot of different toys that need basic things like a postgres db.  Instead of copy-pasting this each time (making it difficult to update and debug all at once), we use a justfile to copy the toy into a temp folder in the desired toy at runtime.  
+
+For example, if `app_xyz` needs `db_postgres`, we will create an `app_xyz/tmp` folder and copy both `app_xyz` and `db_postgres` into this folder.
+
+This allows us to have toys which utilize other toys, but which we can gitignore easily.  
+
+## OLD STUFF HERE
+
+### Toys that need Work
+
+- `aws/sns_eventbridge`
+- `logging_and_monitoring/grafana`
+  - Get Trino working.
+  - Isolate original api.py (as there is another API as well now).
+- `logging_and_monitoring/graylog`
+  - Fill in how to test it.  With mongo.  <https://docs.graylog.org/docs/docker>
+- `logging_and_monitoring/opentelemetry`
+  - Fill in how to run/test it.
+
+### Other TODO
+
+- Consolidate .gitignores
+- TO CHECK:
+  - python
+  - query_engine
+  - scheduling
+  - secrement_management
+
+### Making a New Toy
+
+The only requirements are:
+
+- [ ] The folder must contain a README made from `README.md.tmpl`.
+- [ ] The folder must have one of the following (if applicable):
+  - Dockerfiles or a docker-compose.yaml
+  - Terraform-related files
+  - Helm-related files
+- [ ] Python Folders should use `ssh://git@github.com/jsal13/pydanticsamples`.

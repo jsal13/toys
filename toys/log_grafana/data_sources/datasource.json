@@ -1,0 +1,24 @@
+{
+    "id": 1,
+    "uid": "K74IIRG4k",
+    "orgId": 1,
+    "name": "PostgreSQL",
+    "type": "postgres",
+    "typeName": "PostgreSQL",
+    "typeLogoUrl": "public/app/plugins/datasource/postgres/img/postgresql_logo.svg",
+    "access": "proxy",
+    "url": "db:5432",
+    "user": "postgres",
+    "database": "postgres",
+    "basicAuth": false,
+    "isDefault": true,
+    "jsonData": {
+        "postgresVersion": 903,
+        "sslmode": "disable",
+        "tlsAuth": false,
+        "tlsAuthWithCACert": false,
+        "tlsConfigurationMethod": "file-path",
+        "tlsSkipVerify": true
+    },
+    "readOnly": false
+}
