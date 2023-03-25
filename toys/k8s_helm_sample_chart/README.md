@@ -1,9 +1,5 @@
 # SampleChart
 
-## Status
-
-**Working.**
-
 ## Description
 
 Basic example of using Helm to create an application on K8s.  Follows [this tutorial](https://helm.sh/docs/chart_template_guide/getting_started/).

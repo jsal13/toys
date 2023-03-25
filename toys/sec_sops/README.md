@@ -1,9 +1,5 @@
 # Sops with AWS KMS Secrets
 
-## Status
-
-**Working.**
-
 ## Description
 
 [Sops](https://github.com/mozilla/sops) is a tool one can use to encrypt files and keep in a git repository safely.
@@ -37,3 +33,4 @@ The [below section](#the-sops-process-with-aws-kms) details the general way Sops
 1. Run `terraform init` and then `terraform plan` and `terraform apply` if things look right.  It should make an AWS KMS key.
 2. Encode using the sops command in step 2 in the [Sops Process section](#the-sops-process-with-aws-kms).  This should create an encrypted yaml file.
 3. Decode using the sops command above in step 5 in the [Sops Process section](#the-sops-process-with-aws-kms).  This will show the decrypted file in plain-text on the terminal.
+4. Run `terraform destroy` when done with everything.

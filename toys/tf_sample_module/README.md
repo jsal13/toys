@@ -1,17 +1,14 @@
 # Terraform Module Example
 
-## Status
-
-**Working.**
-
 ## Description
 
 An example of how to write a module in Terraform.
 
 ## Quickstart
 
-```bash
+```shell
 terraform init
-terraform plan  # make sure this looks good
+terraform plan  # make sure the plan looks good
 terraform apply
+terraform destroy  # when you're finished
 ```

@@ -4,11 +4,9 @@ These are things I need to do.
 
 - Debug `aws_sns_cloudwatch`.
 
+- Audit `K8s_helm_sample_chart` to work with kind.
 - Audit `log_grafana` and see what I need to do with that noise.
-- Is opentelemetry worth doing something with?
 - [Composition of docker compose files][1]
-- README use <>'s to make things links.
-- Refactor `make_example_table.py`.  This should be a lot easier to use.
 - `justfiles` to combine things.
 - Redo prefect, just because I don't remember doing it.
 - Copy over Trino and use something like Hive Metastore / Postgres / Whatever else.
