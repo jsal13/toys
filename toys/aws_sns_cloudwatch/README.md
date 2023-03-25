@@ -4,8 +4,6 @@
 
 **Not Working.**
 
-If not working:
-
 - [ ] There is no email which comes to my address.  I'm unsure why.  Should debug.
 
 ## Description

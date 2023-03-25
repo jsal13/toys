@@ -1,0 +1,14 @@
+set shell := ["zsh", "-cu"]
+
+default: run
+
+setup:
+    mkdir -p ./dags ./logs ./plugins
+    echo -e "AIRFLOW_UID=$(id -u)" > .env
+    docker-compose up airflow-init
+
+run: setup
+    docker-compose up
+
+clean:
+    docker-compose down --volumes --remove-orphans

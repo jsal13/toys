@@ -6,7 +6,7 @@ Most of these will be contained to a single folder and do one specific task.  Th
 
 ## Prefixes
 
-Nested structures got to be awkward when reusing toys, so I've opted to have a prefix structure to the folders to say what these toys are or do.  The list of prefixes is given below:
+Nested structures got to be awkward when reusing toys, so I've opted to have a prefix structure on the folder names to say what these toys are or do.  The list of prefixes is given below:
 
 | Prefix | Definition  |
 | ------ | ----------- |
@@ -16,6 +16,15 @@ Nested structures got to be awkward when reusing toys, so I've opted to have a p
 | k8s    | Kubernetes  |
 | sec    | Security    |
 | tf     | Terraform   |
+
+## Suffixes
+
+As in the prefixes second above, I've opted to use a suffix structure on the folder names to denote how we're building them.  
+
+| Suffix | Definition     |
+| ------ | -------------- |
+| DC     | Docker-Compose |
+| HELM   | Helm           |
 
 ## Why are some toys being copied with a justfile?
 
