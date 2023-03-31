@@ -14,6 +14,7 @@ Nested structures got to be awkward when reusing toys, so I've opted to have a p
 | cron   | Scheduling  |
 | db     | Database    |
 | k8s    | Kubernetes  |
+| mlops  | MLOps       |
 | sec    | Security    |
 | tf     | Terraform   |
 

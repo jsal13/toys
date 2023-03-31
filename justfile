@@ -8,3 +8,6 @@ run target:
 
 clean target:
     (cd ./toys/{{target}} && just clean)
+
+toys:
+    (cd ./toys && ls -1)
