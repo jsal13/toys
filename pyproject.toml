@@ -210,3 +210,22 @@ skip = [
 ]
 
 skip_gitignore = true
+line_length = 90
+profile = 'black'
+
+# ========================================
+# PYDOCSTYLE
+# > For linting docstrings.
+# > http://www.pydocstyle.org/en/stable/usage.html
+# > For matching: https://github.com/PyCQA/pydocstyle/issues/553
+# ========================================
+[tool.pydocstyle]
+inherit = false
+match = '((?!test_).)*\.py'
+ignore = [
+  'D100', # Missing docstring in public module.
+  'D104', # Missing docstring in public package.
+  'D107', # Missing docstring in __init__.
+  'D203', # 1 blank line required before class docstring
+  'D212'  # Multi-line docstring summary should start on the first line.
+]

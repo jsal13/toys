@@ -17,3 +17,13 @@ just run
 ```shell
 just clean
 ```
+
+## Notes
+
+- Remember to start a work-pool and agent.
+  - For example, for work-pool `test` you can start an agent in the following way:
+
+  ```shell
+  prefect work-pool create test-pool
+  prefect agent start -p 'test-pool'
+  ```
