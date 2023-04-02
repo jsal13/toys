@@ -9,6 +9,14 @@ CREATE TABLE sensors (
     value4      varchar(5)
 );
 
+CREATE TABLE kafka_example (
+    id          serial PRIMARY KEY,
+    dt          timestamp,
+    value1      integer,
+    value2      float,
+    power       varchar(6)
+);
+
 INSERT INTO sensors (sensor_id, dt, value1, value2, value3, value4) VALUES
 (1, '2023-03-25', -6, 0.3235336824083437, 0.09509334687144433, 'MED'),
 (1, '2023-03-26', -2, 0.415084329664998, -0.7594240518826246, 'MED'),

@@ -26,6 +26,13 @@ just clean
 
 This will create the sample tables which you can access using the credentials in [the credentials section](#credentials) via adminer at <http://localhost:8080>.
 
+## Tables Created
+
+| Table Name    | Init Sample Data? | Used By             |
+| ------------- | ----------------- | ------------------- |
+| sensors       | Yes               | N/A                 |
+| kafka_example | No                | ``stream_kafka_DC`` |
+
 ## Credentials
 
 **NOTE:** You will need to use `db` in place of `localhost` when calling from the adminer.

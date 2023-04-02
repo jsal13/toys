@@ -2,6 +2,9 @@
 
 These are things I need to do.
 
+- Look at TODOs in `consumer.py` in `stream_kafka_DC`.
+- Look at TODOS in `producer.py` in `stream_kafka_DC`.
+
 - Debug `aws_sns_cloudwatch`.
 
 - Audit `K8s_helm_sample_chart` to work with kind.
