@@ -11,6 +11,7 @@ Nested structures got to be awkward when reusing toys, so I've opted to have a p
 | Prefix | Definition  |
 | ------ | ----------- |
 | aws    | AWS Service |
+| code   | Code        |
 | cron   | Scheduling  |
 | db     | Database    |
 | k8s    | Kubernetes  |

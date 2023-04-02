@@ -1,5 +1,7 @@
 # Prefect
 
+NOTE: Need to do the docker-compose here, baybee.
+
 ## Description
 
 This shows off [Prefect](https://docs.prefect.io/).
