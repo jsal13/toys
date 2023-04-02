@@ -8,16 +8,17 @@ Most of these will be contained to a single folder and do one specific task.  Th
 
 Nested structures got to be awkward when reusing toys, so I've opted to have a prefix structure on the folder names to say what these toys are or do.  The list of prefixes is given below:
 
-| Prefix | Definition  |
-| ------ | ----------- |
-| aws    | AWS Service |
-| code   | Code        |
-| cron   | Scheduling  |
-| db     | Database    |
-| k8s    | Kubernetes  |
-| mlops  | MLOps       |
-| sec    | Security    |
-| tf     | Terraform   |
+| Prefix | Definition      |
+| ------ | --------------- |
+| aws    | AWS Service     |
+| code   | Code            |
+| cron   | Scheduling      |
+| db     | Database        |
+| k8s    | Kubernetes      |
+| mlops  | MLOps           |
+| sec    | Security        |
+| stream | Event Streaming |
+| tf     | Terraform       |
 
 ## Suffixes
 
