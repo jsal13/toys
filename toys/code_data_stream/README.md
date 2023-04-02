@@ -1,14 +1,5 @@
 # Project Name Here
 
-## Status (If not Working...)
-
-**Not Working.**
-
-If not working:
-
-- [ ] Error
-- [ ] In progress
-
 ## Description
 
 This generates signals for use in data streaming projects.

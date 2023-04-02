@@ -5,7 +5,10 @@ from typing import Any, Type
 import psycopg
 from kafka import KafkaConsumer
 
-from toys.stream_kafka_DC.config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
+try:
+    from toys.stream_kafka_DC.config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
+except ModuleNotFoundError:
+    from config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
 
 
 # TODO: Why can't I just do this with functions?  Abstract functions or somesuch nonsense.
@@ -60,7 +63,7 @@ class BatchToPostgresMessageProcessor(MessageProcessor):
         conn = None
         print("Connecting to the PostgreSQL database...")
         conn = psycopg.connect(
-            host="localhost",
+            host="db",  # ``localhost``, if not docker-composed.
             dbname="postgres",
             user="postgres",
             password="example",
@@ -111,7 +114,9 @@ def initialize_consumer(
         KAFKA_TOPIC,
         bootstrap_servers=KAFKA_BOOTSTRAP_SERVER,
     )
+    print(f"> Kafka connected: {consumer.bootstrap_connected()}")
     processor = message_processor()
+
     for msg in consumer:
         record = json.loads(msg.value)
         processor.processor(record)

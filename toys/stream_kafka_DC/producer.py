@@ -5,10 +5,14 @@ from datetime import datetime, timedelta
 from enum import Enum, auto
 
 import numpy as np
-from config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
 from kafka import KafkaProducer
 from pydantic import Field
 from pydantic.dataclasses import dataclass
+
+try:
+    from toys.stream_kafka_DC.config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
+except ModuleNotFoundError:
+    from config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
 
 # NOTE: This is replicated from ``/toys/code_data_stream/``.
 # TODO: Make this DRY.
@@ -59,6 +63,7 @@ def generate_signal() -> Signal:
 
 if __name__ == "__main__":
     producer = KafkaProducer(bootstrap_servers=KAFKA_BOOTSTRAP_SERVER)
+    print(f"> Kafka connected: {producer.bootstrap_connected()}")
 
     while True:
         signal = generate_signal()

@@ -6,10 +6,10 @@ services:
     environment:
       POSTGRES_PASSWORD: example
     volumes:
-          - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432
-      
+
   adminer:
     image: adminer
     restart: always

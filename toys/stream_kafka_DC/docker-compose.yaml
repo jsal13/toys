@@ -1,5 +1,6 @@
-version: "3"
+version: '3.1'
 services:
+
   zookeeper:
     image: 'bitnami/zookeeper:latest'
     ports:
@@ -13,8 +14,25 @@ services:
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+
+  producer:
+    build:
+      context: ../..
+      dockerfile: ./toys/stream_kafka_DC/Dockerfile_producer
+    restart: always
+    depends_on:
+      - kafka
+      - consumer
+
+  consumer:
+    build:
+      context: ../..
+      dockerfile: ./toys/stream_kafka_DC/Dockerfile_consumer
+    restart: always
+    depends_on:
+      - kafka

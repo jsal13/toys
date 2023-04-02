@@ -24,3 +24,7 @@ python producer.py
 ```shell
 just clean
 ```
+
+## Notes
+
+- For local work, remember to change the locations from `kafka:9092` to `localhost:9092` and `KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092` to `KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092`.
