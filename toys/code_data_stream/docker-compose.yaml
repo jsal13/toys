@@ -4,5 +4,5 @@ services:
     build:
       context: ../..
       dockerfile: ./toys/code_data_stream/Dockerfile
-    container_name: code_data_stream
     restart: always
+    command: ["/app/.venv/bin/python", "/app/toys/code_data_stream/generate.py"]

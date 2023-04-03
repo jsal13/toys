@@ -25,6 +25,7 @@ services:
       context: ../..
       dockerfile: ./toys/stream_kafka_DC/Dockerfile_producer
     restart: always
+    command: ["/app/.venv/bin/python", "/app/toys/stream_kafka_DC/producer.py"]
     depends_on:
       - kafka
       - consumer
@@ -34,5 +35,6 @@ services:
       context: ../..
       dockerfile: ./toys/stream_kafka_DC/Dockerfile_consumer
     restart: always
+    command: ["/app/.venv/bin/python", "/app/toys/stream_kafka_DC/consumer.py", "&&", "tail", "-f", "/dev/null"]
     depends_on:
       - kafka

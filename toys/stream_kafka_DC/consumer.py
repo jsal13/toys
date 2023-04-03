@@ -6,10 +6,7 @@ import pandas as pd
 import psycopg
 from kafka import KafkaConsumer
 
-try:
-    from toys.stream_kafka_DC.config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
-except ModuleNotFoundError:
-    from config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
+from toys.stream_kafka_DC.config import KAFKA_BOOTSTRAP_SERVER, KAFKA_TOPIC
 
 
 # TODO: Why can't I just do this with functions?  Abstract functions or somesuch nonsense.

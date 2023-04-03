@@ -24,10 +24,10 @@ Nested structures got to be awkward when reusing toys, so I've opted to have a p
 
 As in the prefixes second above, I've opted to use a suffix structure on the folder names to denote how we're building them.  
 
-| Suffix | Definition     |
-| ------ | -------------- |
-| DC     | Docker-Compose |
-| HELM   | Helm           |
+| Suffix | Definition         |
+| ------ | ------------------ |
+| DC     | Docker-Compose     |
+| K8s    | Kubernetes w/ Helm |
 
 ## Why are some toys being copied with a justfile?
 
@@ -45,19 +45,11 @@ This allows us to have toys which utilize other toys, but which we can gitignore
 - `logging_and_monitoring/grafana`
   - Get Trino working.
   - Isolate original api.py (as there is another API as well now).
-- `logging_and_monitoring/graylog`
-  - Fill in how to test it.  With mongo.  <https://docs.graylog.org/docs/docker>
-- `logging_and_monitoring/opentelemetry`
-  - Fill in how to run/test it.
 
 ### Other TODO
 
-- Consolidate .gitignores
 - TO CHECK:
-  - python
   - query_engine
-  - scheduling
-  - secrement_management
 
 ### Making a New Toy
 
@@ -68,4 +60,4 @@ The only requirements are:
   - Dockerfiles or a docker-compose.yaml
   - Terraform-related files
   - Helm-related files
-- [ ] Python Folders should use `ssh://git@github.com/jsal13/pydanticsamples`.
+- [ ] Python Folders should use `ssh://git@github.com/jsal13/cookiecutter-pytemplate`.

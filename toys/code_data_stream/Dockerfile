@@ -22,11 +22,14 @@ FROM python:3.10-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PATH="/app/.venv/bin:$PATH"
+    PATH="/app/.venv/bin:$PATH" \
+    PYTHONPATH="/app/toys:$PYTHONPATH"
 
 WORKDIR /app
 
 COPY --from=builder /app/.venv .venv
-COPY ./toys/code_data_stream/stream_data.py .
 
-CMD ["/app/.venv/bin/python", "stream_data.py"]
+# Context is ../.., so at the root of the repo.
+COPY ./toys/code_data_stream /app/toys/code_data_stream
+
+CMD ["/app/.venv/bin/python", "/app/toys/code_data_stream/generate.py"]
