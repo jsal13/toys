@@ -22,12 +22,15 @@ FROM python:3.10-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PATH="/app/.venv/bin:$PATH"
+    PATH="/app/.venv/bin:$PATH" \
+    PYTHONPATH="/app/toys:$PYTHONPATH"
 
 WORKDIR /app
 
 COPY --from=builder /app/.venv .venv
-COPY ./toys/stream_kafka_DC/producer.py .
-COPY ./toys/stream_kafka_DC/config.py .
 
-CMD ["/app/.venv/bin/python", "producer.py"]
+# Context is ../.., so at the root of the repo.
+COPY ./toys/stream_kafka_DC /app/toys/stream_kafka_DC
+COPY ./toys/code_data_stream /app/toys/code_data_stream
+
+CMD ["/app/.venv/bin/python", "/app/toys/stream_kafka_DC/producer.py"]

@@ -2,6 +2,7 @@ import json
 from abc import ABC, abstractmethod
 from typing import Any, Type
 
+import pandas as pd
 import psycopg
 from kafka import KafkaConsumer
 
@@ -41,9 +42,12 @@ class BatchMessageProcessor(MessageProcessor):
         if len(self.batch_container) < self.batch_size:
             self.batch_container.append(msg)
         else:
-            print(f"> Batch number {self.batch_number}...")
-            print(self.batch_container)
-            print()
+            print(
+                f"> Batch number {self.batch_number}...",
+                self.batch_container,
+                sep="\n",
+                end="\n\n",
+            )
             self.batch_number += 1
             self.batch_container.clear()
 
@@ -76,21 +80,27 @@ class BatchToPostgresMessageProcessor(MessageProcessor):
         """Insert a series of signals into the ``kafka_example`` table."""
         # NOTE: This is vulnerable to SQL Injections.  Do not do this.
         # This is an example for toy purposes.
-        q_insert_prefix = "INSERT INTO kafka_example(dt, value1, value2, power) values "
 
-        signals_dicts = list(signals)
+        columns = [
+            "sensor_id",
+            "dt",
+            "value_1",
+            "value_2",
+            "value_3",
+            "heat_index",
+            "power",
+        ]
+        df_signals = pd.DataFrame(signals, columns=columns)
+        print(df_signals)
+
         values_str = ",".join(
-            (
-                f"""('{signal["dt"]}', {signal["value_1"]},"""
-                + f"""{signal["value_2"]}, '{signal["power"]}')"""
-            )
-            for signal in signals_dicts
+            [str(row) for row in df_signals.itertuples(index=False, name=None)]
         )
-        query = q_insert_prefix + values_str + ";"
 
-        print(query)
+        sql = f"INSERT INTO events ({','.join(columns)}) values {values_str};"
+
         with self.conn.cursor() as cur:
-            cur.execute(query)
+            cur.execute(sql)
 
     def processor(self, msg: dict[str, Any]) -> Any:
         """Print ``msg`` to terminal."""
