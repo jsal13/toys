@@ -16,6 +16,7 @@ Nested structures got to be awkward when reusing toys, so I've opted to have a p
 | db     | Database        |
 | k8s    | Kubernetes      |
 | mlops  | MLOps           |
+| qe     | Query Engine    |
 | sec    | Security        |
 | stream | Event Streaming |
 | tf     | Terraform       |

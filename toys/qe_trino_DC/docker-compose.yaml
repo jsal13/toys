@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  trino:
+    # 410 is from Apr 2023.
+    image: 'trinodb/trino:410'
+    ports:
+      - 8081:8080
+      - 9080:9080
+      - 9081:9081
+    volumes: 
+      - ./trino_config:/etc/trino

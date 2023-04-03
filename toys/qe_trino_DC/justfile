@@ -1,0 +1,9 @@
+set shell := ["zsh", "-cu"]
+
+default: run
+
+run:
+    docker-compose -f ./docker-compose.yaml -f ../db_postgres/docker-compose.yaml up
+
+clean:
+    docker-compose down

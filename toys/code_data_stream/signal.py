@@ -36,7 +36,6 @@ class Signal:
         """Convert dataclass values to json."""
         # Remove "__pydantic_initialized__" from the dict.
         values = self.__dict__.copy()
-        del values["__pydantic_initialised__"]
 
         return json.dumps(values, default=lambda x: x.name)
 
