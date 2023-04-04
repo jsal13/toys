@@ -5,6 +5,7 @@ These are things I need to do.
 - Look at TODOs in `consumer.py` in `stream_kafka_DC`.
 - Look at TODOS in `producer.py` in `stream_kafka_DC`.
 - Make an aggregation table for Kafka, so that prefect can add to that.
+- Trino should also be able to query something else?
 
 - Debug `aws_sns_cloudwatch`.
 
