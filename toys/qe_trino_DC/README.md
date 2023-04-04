@@ -16,6 +16,18 @@ We demonstrate Trino with the following connectors:
 just run
 ```
 
+To query the database, download the [Trino CLI](https://trino.io/docs/current/client/cli.html) and use the command:
+
+```shell
+./trino-cli.jar --server http://localhost:8081 --catalog postgres --schema public
+```
+
+From inside the CLI you can query a table:
+
+```sql
+SELECT * FROM sensors;
+```
+
 **To clean up**:
 
 ```shell
