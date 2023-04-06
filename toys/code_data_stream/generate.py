@@ -23,10 +23,10 @@ def generate_signal_target_variable(value_1: int, value_2: float, power: Power) 
     epsilon = np.random.normal(0, 0.05)
 
     if (value_2 < 0) and (power in [Power.LOW]):
-        return np.clip(epsilon, 0.0, 1.0)
+        return round(np.clip(epsilon, 0.0, 1.0), 4)
 
     if (value_2 > 1.96) and (power == Power.HIGH):
-        return np.clip(1 - epsilon, 0.0, 1.0)
+        return round(np.clip(1 - epsilon, 0.0, 1.0), 4)
 
     sigmoid = 1 / (1 + np.exp(-(value_2**3 + value_1)))
     if power == Power.LOW:

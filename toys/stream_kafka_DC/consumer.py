@@ -73,8 +73,8 @@ class BatchToPostgresMessageProcessor(MessageProcessor):
         print("Connection successful")
         return conn
 
-    def _insert_signal_to_kafka_table(self, signals: list[dict[str, Any]]) -> None:
-        """Insert a series of signals into the ``kafka_example`` table."""
+    def _insert_signal_to_events_table(self, signals: list[dict[str, Any]]) -> None:
+        """Insert a series of signals into the ``events`` table."""
         # NOTE: This is vulnerable to SQL Injections.  Do not do this.
         # This is an example for toy purposes.
 
@@ -105,7 +105,7 @@ class BatchToPostgresMessageProcessor(MessageProcessor):
             self.batch_container.append(msg)
         else:
             print(f"> Batch number {self.batch_number}...")
-            self._insert_signal_to_kafka_table(self.batch_container)
+            self._insert_signal_to_events_table(self.batch_container)
             print()
             self.batch_number += 1
             self.batch_container.clear()

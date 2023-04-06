@@ -9,11 +9,14 @@ CREATE TABLE sensors (
     value4      varchar(5)
 );
 
-CREATE TABLE kafka_example (
+CREATE TABLE events (
     id          serial PRIMARY KEY,
+    sensor_id   integer,
     dt          timestamp,
-    value1      integer,
-    value2      float,
+    value_1     integer,
+    value_2     float,
+    value_3     float,
+    heat_index  float,
     power       varchar(6)
 );
 

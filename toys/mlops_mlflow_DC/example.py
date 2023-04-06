@@ -5,7 +5,7 @@ import mlflow
 import numpy as np
 
 
-def example_experiment_run():
+def example_experiment_run() -> None:
     """Run example MLFlow experiment."""
     experiment = mlflow.set_experiment("test")
     print("> mlflow tracking uri:", mlflow.tracking.get_tracking_uri())

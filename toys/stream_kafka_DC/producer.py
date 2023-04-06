@@ -16,4 +16,4 @@ if __name__ == "__main__":
         signal_json_bytes = signal.to_json().encode("utf-8")
         producer.send(KAFKA_TOPIC, signal_json_bytes)
 
-        time.sleep(2)
+        time.sleep(1)
