@@ -1,0 +1,9 @@
+set shell := ["zsh", "-cu"]
+
+default: run
+
+run:
+    helm install postgres -f ./values.yaml bitnami/postgresql
+
+clean:
+    helm uninstall postgres
