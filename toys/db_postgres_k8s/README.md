@@ -1,5 +1,7 @@
 # Postgres
 
+Read the docs for this chart [here](https://artifacthub.io/packages/helm/bitnami/postgresql).
+
 ## Quick Start
 
 Have a K8s cluster running (we use `kind` here):
