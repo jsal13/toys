@@ -5,8 +5,17 @@ services:
       context: ../..
       dockerfile: ./toys/code_api_DC/Dockerfile
     restart: always
-    command:
+    ports:
+      - 4041:4041
+    entrypoint:
       [
         "/app/.venv/bin/python",
-        "uvicorn --host '0.0.0.0' --port 4041 api:api --reload"
+        "-m",
+        "uvicorn",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "4041",
+        "toys.code_api_DC.api:api",
+        "--reload"
       ]

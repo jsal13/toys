@@ -32,4 +32,6 @@ COPY --from=builder /app/.venv .venv
 # Context is ../.., so at the root of the repo.
 COPY ./toys/code_api_DC /app/toys/code_api_DC
 
-CMD ["/app/.venv/bin/python", "uvicorn --host '0.0.0.0' --port 4041 api:api --reload"]
+EXPOSE 4041
+
+ENTRYPOINT ["/app/.venv/bin/python", "-m", "uvicorn", "--host", "0.0.0.0", "--port", "4041", "toys.code_api_DC.api:api", "--reload"]
