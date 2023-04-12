@@ -9,10 +9,12 @@
         ],
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
-        }
+        },
+        "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "python.sortImports.args": [
         "--profile",
         "black"
-    ]
+    ],
+    "python.formatting.provider": "none"
 }

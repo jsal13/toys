@@ -1,0 +1,6 @@
+set shell := ["zsh", "-cu"]
+
+default: test
+
+test:
+    pytest .
