@@ -1,8 +1,9 @@
 import string
 
-from toys.cron_prefect_DC.flow_example.example_names import NAMES
 from prefect import flow, task
 from prefect.task_runners import ConcurrentTaskRunner, SequentialTaskRunner
+
+from toys.cron_prefect.flow_example.example_names import NAMES
 
 
 @task(retries=2, timeout_seconds=500)

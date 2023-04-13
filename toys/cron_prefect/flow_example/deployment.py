@@ -1,6 +1,7 @@
 from prefect.deployments import Deployment
 from prefect.server.schemas.schedules import IntervalSchedule
-from tutorial_1 import score_a_few_names
+
+from toys.cron_prefect.flow_example.tutorial_1 import score_a_few_names
 
 deployment_score_a_few_names = Deployment.build_from_flow(
     flow=score_a_few_names,

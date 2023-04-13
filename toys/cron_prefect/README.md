@@ -11,13 +11,20 @@ This shows off [Prefect](https://docs.prefect.io/).
 **To run**:
 
 ```shell
-just run
+prefect server start
 ```
 
-**To clean up**:
+Then create your work-pool and agent as follows:
 
 ```shell
-just clean
+prefect work-pool create test-pool
+prefect agent start -p 'test-pool'
+```
+
+You can put an example flow up using:
+
+```shell
+python ./flow_example/deployment.py
 ```
 
 ## Notes
@@ -29,3 +36,5 @@ just clean
   prefect work-pool create test-pool
   prefect agent start -p 'test-pool'
   ```
+
+- You may want to `rm -rf ~/.prefect` to clean up old data or pools.
