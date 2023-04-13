@@ -2,18 +2,4 @@
 
 ## Description
 
-Examples of various libraries and tasks in Python.  Each should include a test.
-
-## Quickstart
-
-**To run**:
-
-```shell
-just run
-```
-
-**To clean up**:
-
-```shell
-just clean
-```
+Examples of various libraries and tasks in Python.  These will typically be code in a folder which gives an example of how things work.

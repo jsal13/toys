@@ -29,7 +29,7 @@ WORKDIR /app
 
 COPY --from=builder /app/.venv .venv
 
-# Context is ../.., so at the root of the repo.
-COPY ./toys/code_python /app/toys/code_python
+# Context is ../../.., so at the root of the repo.
+COPY ./toys/code_python/strawberry_graphql /app/toys/code_python/strawberry_graphql
 
 CMD ["strawberry", "server", "toys.code_python.graphql_strawberry:schema"]

@@ -3,7 +3,7 @@ set shell := ["zsh", "-cu"]
 default: test
 
 strawberry:
-    docker build -f Dockerfile_graphql_strawberry -t strawberry ../..
+    docker build -t strawberry ../../..
     docker run -p 8000:8000 strawberry:latest
 
 test:
