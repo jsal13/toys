@@ -14,14 +14,14 @@ class MessageProcessor(ABC):
     """Processor for messages consumed by the consumer."""
 
     @abstractmethod
-    def processor(self, msg: dict[str, Any]) -> Any:
+    def processor(self, msg: dict[str, Any]) -> None:
         """Process ``msg``."""
 
 
 class PrintMessageProcessor(MessageProcessor):
     """Processor for messages which ``print``s to terminal."""
 
-    def processor(self, msg: dict[str, Any]) -> Any:
+    def processor(self, msg: dict[str, Any]) -> None:
         """Print ``msg`` to terminal."""
         print(msg)
 
@@ -34,7 +34,7 @@ class BatchMessageProcessor(MessageProcessor):
         self.batch_number = 1
         self.batch_size = 5
 
-    def processor(self, msg: dict[str, Any]) -> Any:
+    def processor(self, msg: dict[str, Any]) -> None:
         """Print ``msg`` to terminal."""
         if len(self.batch_container) < self.batch_size:
             self.batch_container.append(msg)
@@ -99,7 +99,7 @@ class BatchToPostgresMessageProcessor(MessageProcessor):
         with self.conn.cursor() as cur:
             cur.execute(sql)
 
-    def processor(self, msg: dict[str, Any]) -> Any:
+    def processor(self, msg: dict[str, Any]) -> None:
         """Print ``msg`` to terminal."""
         if len(self.batch_container) < self.batch_size:
             self.batch_container.append(msg)
@@ -113,10 +113,8 @@ class BatchToPostgresMessageProcessor(MessageProcessor):
 
 def initialize_consumer(
     message_processor: Type[MessageProcessor] = PrintMessageProcessor,
-) -> Any:
+) -> None:
     """Initialize Kafka topic consumer."""
-    # TODO: Use poll method to poll Kafka.
-    # Kafka-types?  What the heck.
     consumer = KafkaConsumer(
         KAFKA_TOPIC,
         bootstrap_servers=KAFKA_BOOTSTRAP_SERVER,
