@@ -1,5 +1,4 @@
 import string
-from dataclasses import dataclass
 
 import great_expectations as gx
 import numpy as np
@@ -11,21 +10,8 @@ context = gx.get_context()
 
 # Let's make some synthetic data for use in GX.
 
-
-@dataclass
-class Record:
-    """Represent a Record."""
-
-    field_int: int | None
-    field_nonneg_int: int | None
-    field_required_int: int | None
-    field_float: float | None
-    field_str: str | None
-
-
-def create_random_records(n: int, missing_data_percent: float = 0.1) -> list["Record"]:
+def create_random_records(n: int, missing_data_percent: float = 0.1) -> pd.DataFrame:
     """Create random records."""
-
     # We purposely put some malformed data in here.
     field_ints = np.random.randint(-100, 100, size=n)
     field_nonneg_int = np.random.randint(-10, 100, size=n)
@@ -41,10 +27,10 @@ def create_random_records(n: int, missing_data_percent: float = 0.1) -> list["Re
         "field_str": field_str,
     }
 
-    df = pd.DataFrame(fields)
+    _df = pd.DataFrame(fields)
 
     # Create random nulls.
-    df = df.mask(
+    _df = _df.mask(
         np.random.choice(
             [True, False],
             size=df.shape,
@@ -52,18 +38,23 @@ def create_random_records(n: int, missing_data_percent: float = 0.1) -> list["Re
         )
     )
 
-    return df
+    return _df
 
 df = create_random_records(100)
 
 # Create a validator for reading a dataframe.
-# A validator stores Expectations about data it's associated with, and performing introspections on the data.
+# A validator stores Expectations about data it's
+# associated with, and performing introspections on the data.
 
 validator = context.sources.pandas_default.read_dataframe(df)
 
 # Let's do a checkpoint, this allows us to repeat validation.
 
-checkpoint = gx.checkpoint.SimpleCheckpoint(name="quickstart_checkpoint", data_context=context, validator=validator)
+checkpoint = gx.checkpoint.SimpleCheckpoint(
+    name="quickstart_checkpoint",
+    data_context=context,
+    validator=validator
+)
 
 # Run the checkpoint.
 checkpoint_result = checkpoint.run()
